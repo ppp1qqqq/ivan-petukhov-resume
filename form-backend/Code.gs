@@ -18,11 +18,24 @@
  */
 
 const NOTIFY_EMAIL = 'ivanmorozov112233@gmail.com';
+// The sheet is opened by id, so the script works whether or not it is bound to the spreadsheet.
+const SPREADSHEET_ID = '1DuUJ9dTY9r5xMH7iJQeORlI-tLp1v20nCtiJCh7KRZs';
 const SHEET_NAME = 'Заявки';
 const HEADERS = ['Дата', 'Имя', 'Почта', 'Компания', 'Тема', 'Сообщение', 'Страница'];
 const LIMITS = { name: 120, email: 160, company: 160, topic: 60, message: 800, page: 300 };
 
 function doPost(e) {
+  // An uncaught error returns Google's HTML error page without CORS headers,
+  // which the site cannot read; report every failure as JSON instead.
+  try {
+    return handle_(e);
+  } catch (err) {
+    console.error(err);
+    return json_({ ok: false, error: String(err && err.message || err) });
+  }
+}
+
+function handle_(e) {
   const p = (e && e.parameter) || {};
   // Honeypot: people never see the "website" field, bots fill it in.
   if (p.website) return json_({ ok: true });
@@ -55,7 +68,7 @@ function doPost(e) {
       d.message,
       '',
       'Страница: ' + d.page,
-      'Все заявки: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl(),
+      'Все заявки: ' + spreadsheet_().getUrl(),
     ].join('\n'),
   });
 
@@ -67,8 +80,12 @@ function doGet() {
   return ContentService.createTextOutput('Форма обратной связи работает.');
 }
 
+function spreadsheet_() {
+  return SpreadsheetApp.openById(SPREADSHEET_ID);
+}
+
 function sheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = spreadsheet_();
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS);
