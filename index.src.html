@@ -736,6 +736,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
 .form-ok p{margin:6px 0 0}
 .form-summary{display:none;align-items:flex-start;gap:10px;padding:12px 14px;margin-bottom:18px;border-radius:var(--r-ui);background:#fdecea;color:#8f271f;font-size:15px;font-weight:550}
 .form-summary.is-on{display:flex}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form-summary .ic{margin-top:2px}
 
 /* 9. Footer ============================================================= */
@@ -1909,6 +1910,8 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
             <span class="help" id="h-message"><span>Хватит нескольких предложений.</span><span class="num" data-count>0 / 800</span></span>
             <span class="err" id="e-message"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>Напишите хотя бы 20 символов.</span>
           </div>
+          <div class="hp" aria-hidden="true"><label for="f-website">Сайт</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="form-summary" role="alert" data-send-error><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg><span>Не получилось отправить сообщение. Попробуйте ещё раз или напишите в Telegram @bababababaabba.</span></div>
           <div class="form-foot">
             <button class="btn" type="button" data-submit><span class="spin" aria-hidden="true"></span><svg class="ic btn-ic" aria-hidden="true"><use href="#i-send"/></svg><span data-label>Отправить</span></button>
             <small>Данные нужны только для ответа.</small>
@@ -1917,7 +1920,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
         <div class="form-ok note" role="status" aria-live="polite" data-ok tabindex="-1">
           <span class="tape tape--top" aria-hidden="true"></span>
           <span class="hand" data-ok-title>Спасибо!</span>
-          <p>Сообщение готово. В этой версии сайта оно никуда не уходит: когда форма будет подключена, письмо придёт мне на почту. А пока быстрее всего позвонить или написать в Telegram.</p>
+          <p data-ok-text>Сообщение отправлено и уже у меня на почте. Если вопрос срочный, звоните или пишите в Telegram @bababababaabba.</p>
           <button class="link" type="button" data-reset-form style="margin-top:10px"><svg class="ic" aria-hidden="true"><use href="#i-rotate"/></svg><u>Написать ещё</u></button>
         </div>
       </div>
@@ -1928,7 +1931,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
           <ul>
             <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="num">+7 (977) 770-86-76, лучше звонить</span></li>
             <li><button class="copy" type="button" data-copy="ivanmorozov112233@gmail.com" aria-label="Скопировать почту ivanmorozov112233@gmail.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>ivanmorozov112233@gmail.com</span><svg class="ic ic-sm ic-copy" aria-hidden="true"><use href="#i-copy"/></svg></button></li>
-            <li><button class="copy" type="button" data-copy="@shakek" aria-label="Скопировать Telegram @shakek"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg><span>Telegram @shakek</span><svg class="ic ic-sm ic-copy" aria-hidden="true"><use href="#i-copy"/></svg></button></li>
+            <li><button class="copy" type="button" data-copy="@bababababaabba" aria-label="Скопировать Telegram @bababababaabba"><svg class="ic" aria-hidden="true"><use href="#i-send"/></svg><span>Telegram @bababababaabba</span><svg class="ic ic-sm ic-copy" aria-hidden="true"><use href="#i-copy"/></svg></button></li>
             <li><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span>Открыт к предложениям</span><span class="dot" aria-hidden="true"></span></li>
           </ul>
         </aside>
@@ -1944,7 +1947,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
             <div class="acc-item"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-2" id="accb-2">Какая занятость подходит?<svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><div class="acc-panel" id="acc-2" role="region" aria-labelledby="accb-2"><div><p>Полная или частичная занятость, проектная работа и разовые задачи, стажировка. Время в пути до офиса значения не имеет.</p></div></div></div>
             <div class="acc-item"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-3" id="accb-3">Можно оформить проектную работу?<svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><div class="acc-panel" id="acc-3" role="region" aria-labelledby="accb-3"><div><p>Да, у меня оформлена самозанятость, так что проект или разовую задачу можно провести официально.</p></div></div></div>
             <div class="acc-item"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-4" id="accb-4">Как совмещаешь с учёбой?<svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><div class="acc-panel" id="acc-4" role="region" aria-labelledby="accb-4"><div><p>Учусь на 3 курсе колледжа «Царицыно» и с декабря 2025 года совмещаю учёбу с коммерческой разработкой. Удобный график обсудим на созвоне.</p></div></div></div>
-            <div class="acc-item"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-5" id="accb-5">Как быстрее всего связаться?<svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><div class="acc-panel" id="acc-5" role="region" aria-labelledby="accb-5"><div><p>Позвонить: телефон для меня основной способ связи. Ещё можно написать в Telegram @shakek или на почту.</p></div></div></div>
+            <div class="acc-item"><button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-5" id="accb-5">Как быстрее всего связаться?<svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></button><div class="acc-panel" id="acc-5" role="region" aria-labelledby="accb-5"><div><p>Позвонить: телефон для меня основной способ связи. Ещё можно написать в Telegram @bababababaabba или на почту.</p></div></div></div>
           </div>
         </div>
       </div>
@@ -1970,7 +1973,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
       <span class="tape tape--tl" aria-hidden="true"></span><span class="tape tape--tr" aria-hidden="true"></span>
       <div class="cv-top">
         <div><h2>Иван Петухов</h2><p>Fullstack-разработчик: TypeScript, React, Node.js</p></div>
-        <ul><li>ivanmorozov112233@gmail.com</li><li class="num">+7 (977) 770-86-76</li><li>Telegram @shakek</li><li>Москва, м. Пражская</li></ul>
+        <ul><li>ivanmorozov112233@gmail.com</li><li class="num">+7 (977) 770-86-76</li><li>Telegram @bababababaabba</li><li>Москва, м. Пражская</li></ul>
       </div>
       <div class="cv-sec"><span class="mono">Профиль</span><p>Петухов Иван Дмитриевич, 18 лет. Fullstack-разработчик с девятью месяцами коммерческого опыта: мультиканальный чат-бот со своим RAG-движком, операторский центр, UX-аналитика сайта. Сейчас специалист технической поддержки в Гринатоме, учусь на 3 курсе колледжа «Царицыно». Москва, без переезда и командировок.</p></div>
       <div class="cv-sec"><span class="mono">Опыт</span>
@@ -2076,6 +2079,10 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
      embeds it once. Photographs are WebP; the illustrations are SVG
      drawn by tools/illustrations.mjs.
      ------------------------------------------------------------------ */
+  /* Contact form backend: the Google Apps Script web app URL (ends with /exec),
+     see form-backend/Code.gs. Empty means the form shows a local demo note and sends nothing. */
+  var FORM_ENDPOINT = '';
+
   var IMAGES = {
     'portrait': 'images/portrait.webp',
     'candid': 'images/candid.webp',
@@ -2398,6 +2405,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
     var ok = $('[data-ok]');
     var sendBtn = $('[data-submit]', form);
     var summary = $('[data-summary]', form);
+    var sendError = $('[data-send-error]', form);
     var count = $('[data-count]', form);
     var msg = $('#f-message');
     var rules = {
@@ -2422,22 +2430,61 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
       if (firstBad) { var el = $('[data-field="' + firstBad + '"] input, [data-field="' + firstBad + '"] textarea', form); if (el) el.focus(); }
       return !firstBad;
     };
+    var finish = function () {
+      sendBtn.classList.remove('is-loading');
+      sendBtn.removeAttribute('aria-disabled');
+      $('[data-label]', sendBtn).textContent = 'Отправить';
+    };
+    var showOk = function (text) {
+      var first = $('#f-name').value.trim().split(/\s+/)[0];
+      $('[data-ok-title]').textContent = 'Спасибо, ' + first + '!';
+      $('[data-ok-text]').textContent = text;
+      form.hidden = true;
+      ok.classList.add('is-on');
+      ok.focus({ preventScroll: true });
+      ok.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    };
     var submit = function () {
-      if (!validate()) return;
+      if (sendBtn.classList.contains('is-loading') || !validate()) return;
+      sendError.classList.remove('is-on');
       sendBtn.classList.add('is-loading');
       sendBtn.setAttribute('aria-disabled', 'true');
       $('[data-label]', sendBtn).textContent = 'Отправляю';
-      setTimeout(function () {
-        sendBtn.classList.remove('is-loading');
-        sendBtn.removeAttribute('aria-disabled');
-        $('[data-label]', sendBtn).textContent = 'Отправить';
-        var first = $('#f-name').value.trim().split(/\s+/)[0];
-        $('[data-ok-title]').textContent = 'Спасибо, ' + first + '!';
-        form.hidden = true;
-        ok.classList.add('is-on');
-        ok.focus({ preventScroll: true });
-        ok.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-      }, 900);
+      // No backend (local preview or a sandboxed demo): nothing leaves the browser, and the note says so.
+      if (!FORM_ENDPOINT || window.origin === 'null' || !window.fetch) {
+        setTimeout(function () {
+          finish();
+          showOk('Сообщение готово, но в этой версии сайта форма не подключена и письмо никуда не ушло. Позвоните или напишите в Telegram @bababababaabba.');
+        }, 900);
+        return;
+      }
+      var topic = $('input[name="topic"]:checked', form);
+      var body = new URLSearchParams({
+        name: $('#f-name').value.trim(),
+        email: $('#f-email').value.trim(),
+        company: $('#f-company').value.trim(),
+        topic: topic ? topic.parentNode.textContent.trim() : '',
+        message: msg.value.trim(),
+        page: location.href,
+        website: $('#f-website').value
+      });
+      // A urlencoded POST is a simple request: no CORS preflight, and Apps Script returns readable JSON.
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 20000) : 0;
+      fetch(FORM_ENDPOINT, { method: 'POST', body: body, signal: ctrl ? ctrl.signal : undefined })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res || !res.ok) throw new Error('rejected');
+          clearTimeout(timer);
+          finish();
+          showOk('Сообщение отправлено и уже у меня на почте. Если вопрос срочный, звоните или пишите в Telegram @bababababaabba.');
+        })
+        .catch(function () {
+          clearTimeout(timer);
+          finish();
+          sendError.classList.add('is-on');
+          sendBtn.focus();
+        });
     };
     sendBtn.addEventListener('click', submit);
     form.addEventListener('submit', function (e) { e.preventDefault(); submit(); });
@@ -2458,6 +2505,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
     });
     $('[data-reset-form]').addEventListener('click', function () {
       form.reset(); count.textContent = '0 / 800';
+      sendError.classList.remove('is-on');
       ok.classList.remove('is-on');
       form.hidden = false;
       $('#f-name').focus();
