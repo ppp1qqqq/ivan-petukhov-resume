@@ -359,6 +359,44 @@ main{display:block;min-height:70vh;overflow-x:clip}
 .holo .ic{width:28px;height:28px;stroke-width:1.6}
 .passion{font-size:24px;font-weight:700;rotate:-5deg}
 
+/* Promo video: a taped polaroid of the 20-second video card, pinned over the
+   bottom edge of the notepaper on the right, with a hand-written pointer.
+   It opens the lightbox below; the video loads only on the first open. */
+.promo-snap{position:relative;z-index:4;display:flex;align-items:center;gap:12px;width:max-content;max-width:100%;margin:-34px 30px 0 auto;text-align:left;color:var(--ink)}
+.promo-snap__note{display:flex;flex-direction:column;align-items:flex-end;gap:3px;rotate:-3deg;translate:0 10px}
+.promo-snap__note .hand{font-size:27px;font-weight:700}
+.promo-snap__note .mono{font-size:10.5px;color:var(--muted)}
+.promo-snap__arrow{width:58px;height:28px;margin-top:2px;fill:none;stroke:var(--marker);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.promo-snap__pic{position:relative;flex:none;display:block;padding:6px 6px 9px;background:var(--sheet);border-radius:2px;rotate:3.5deg;
+  box-shadow:0 1px 1px rgba(25,32,61,.08),3px 8px 16px -6px rgba(25,32,61,.32);transition:translate var(--t-ui) var(--ease-out),rotate var(--t-ui) var(--ease-out),box-shadow var(--t-ui) ease}
+.promo-snap__pic img{display:block;width:92px;height:164px;object-fit:cover;border-radius:1px;background:var(--paper-2)}
+.promo-snap__pic .tape{width:64px;height:22px;top:-11px;rotate:-4deg}
+.promo-snap__play{position:absolute;left:50%;top:calc(50% - 2px);display:grid;place-items:center;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--cobalt);color:#fff;
+  box-shadow:0 0 0 4px rgba(255,255,255,.85),0 6px 14px -4px rgba(19,38,119,.55);transition:scale var(--t-ui) var(--ease-out)}
+.promo-snap__play .ic{width:18px;height:18px;margin-left:3px;fill:currentColor;stroke-width:1.4}
+.promo-snap:hover .promo-snap__pic{translate:0 -3px;rotate:2deg;box-shadow:0 2px 2px rgba(25,32,61,.06),5px 16px 24px -10px rgba(25,32,61,.4)}
+.promo-snap:hover .promo-snap__play{scale:1.08}
+.promo-snap:active .promo-snap__pic{translate:0 -1px;transition-duration:var(--t-press)}
+.promo-snap:focus-visible{outline-offset:8px;border-radius:6px}
+
+/* Lightbox: the video on a polaroid over a dimmed desk */
+.promo-modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:24px 16px;visibility:hidden;pointer-events:none}
+.promo-modal.is-open{visibility:visible;pointer-events:auto}
+.promo-modal__scrim{position:absolute;inset:0;background:rgba(25,32,61,.6);opacity:0;transition:opacity .26s ease}
+.promo-modal.is-open .promo-modal__scrim{opacity:1}
+.promo-modal__card{position:relative;padding:10px 10px 0;background:var(--sheet);border-radius:3px;box-shadow:var(--sh-lift);opacity:0;translate:0 26px;rotate:-1.6deg;
+  transition:opacity .2s ease,translate .36s var(--ease-out),rotate .36s var(--ease-out)}
+.promo-modal.is-open .promo-modal__card{opacity:1;translate:0 0;rotate:-.6deg}
+.promo-modal__card .tape--top{top:-14px}
+.promo-modal video{display:block;width:min(calc((100vh - 150px) * 9 / 16),405px,calc(100vw - 52px));height:auto;aspect-ratio:9/16;background:var(--ink);border-radius:1px}
+.promo-modal__cap{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:8px 4px 11px}
+.promo-modal__cap .hand{font-size:25px;font-weight:700}
+.promo-modal__cap .mono{font-size:10.5px;color:var(--muted)}
+.promo-modal__close{position:absolute;top:-14px;right:-14px;z-index:4;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--cobalt);color:#fff;
+  box-shadow:0 2px 0 var(--cobalt-deep),0 10px 18px -8px rgba(19,38,119,.6);transition:scale var(--t-ui) var(--ease-out)}
+.promo-modal__close:hover{scale:1.06}
+.promo-modal__close .ic{width:20px;height:20px;stroke-width:2.2}
+
 /* Cobalt marquee ribbon */
 .ribbon-wrap{position:relative;z-index:1;margin-top:8px;padding:22px 0 24px;overflow:hidden}
 .ribbon{background:var(--cobalt);rotate:-1.6deg;margin-inline:-60px;box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 14px 30px -18px rgba(19,38,119,.9);
@@ -770,6 +808,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
 .js .hero .trait{animation:popIn .4s var(--ease-out) both}
 .js .hero .trait:nth-child(1){animation-delay:.3s}.js .hero .trait:nth-child(2){animation-delay:.36s}.js .hero .trait:nth-child(3){animation-delay:.42s}
 .js .hero .ribbon-wrap{animation:fadeIn .5s ease .3s both}
+.js .hero .promo-snap{animation:popIn .45s var(--ease-out) .5s both}
 @keyframes badgeIn{from{opacity:0;rotate:-9deg;translate:0 -14px}55%{opacity:1}to{opacity:1;rotate:-5deg;translate:0 0}}
 @keyframes riseIn{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
 @keyframes plateIn{from{opacity:0;scale:.95}to{opacity:1;scale:1}}
@@ -783,6 +822,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
   .name-row h1{font-size:38px}
   .notepaper{padding:34px 30px 30px}
   .traits{position:static;display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 4px}
+  .promo-snap{margin-top:-18px}
 }
 @media (max-width:900px){
   .hero .wrap{grid-template-columns:minmax(0,1fr);gap:38px}
@@ -895,7 +935,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
   .ribbon__track{animation:none!important}
 }
 @media print{
-  .site-header,.site-footer,.drawer,.toast,.skip,.page:not(.is-current),.cv-actions,.page-head .hand{display:none!important}
+  .site-header,.site-footer,.drawer,.toast,.skip,.promo-snap,.promo-modal,.page:not(.is-current),.cv-actions,.page-head .hand{display:none!important}
   body{background:#fff}
   .js .rv{opacity:1;translate:0 0}
   .cv{box-shadow:none;margin:0;max-width:none;padding:0}
@@ -933,6 +973,7 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
   <symbol id="i-printer" viewBox="0 0 24 24"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></symbol>
   <symbol id="i-layout" viewBox="0 0 24 24"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></symbol>
   <symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.6v14.8a.7.7 0 0 0 1.06.6l11.7-7.4a.7.7 0 0 0 0-1.2L8.06 4a.7.7 0 0 0-1.06.6z"/></symbol>
   <symbol id="i-video" viewBox="0 0 24 24"><path d="m16 13 5.22 3.48a.5.5 0 0 0 .78-.42V7.87a.5.5 0 0 0-.75-.38L16 11"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.29 7 12 12l8.71-5M12 22V12"/></symbol>
   <symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></symbol>
@@ -1062,6 +1103,19 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
             </div>
           </div>
         </div>
+        <!-- Promo video: a taped polaroid pinned over the notepaper edge; opens the lightbox -->
+        <button class="promo-snap" type="button" data-promo-open aria-haspopup="dialog" aria-controls="promo-modal" aria-label="Смотреть видео-визитку: 20 секунд, со звуком">
+          <span class="promo-snap__note" aria-hidden="true">
+            <span class="hand">видео-визитка</span>
+            <span class="mono">20 секунд · со звуком</span>
+            <svg class="promo-snap__arrow" viewBox="0 0 58 28"><path d="M4 6c10 12 26 17 46 12"/><path d="M42 11l9 7-10 5"/></svg>
+          </span>
+          <span class="promo-snap__pic">
+            <span class="tape tape--top" aria-hidden="true"></span>
+            <img data-img="promo-poster" width="540" height="960" alt="" decoding="async">
+            <span class="promo-snap__play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span>
+          </span>
+        </button>
       </div>
     </div>
 
@@ -2068,6 +2122,16 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
   </div>
 </footer>
 
+<!-- Promo video lightbox: the 20-second video card on a polaroid -->
+<div class="promo-modal" id="promo-modal" aria-hidden="true">
+  <div class="promo-modal__scrim" data-promo-close></div>
+  <div class="promo-modal__card" role="dialog" aria-modal="true" aria-label="Видео-визитка Ивана Петухова">
+    <span class="tape tape--top" aria-hidden="true"></span>
+    <video controls playsinline preload="none" width="720" height="1280"></video>
+    <div class="promo-modal__cap"><span class="hand">видео-визитка</span><span class="mono">Иван Петухов · 20 с</span></div>
+    <button class="promo-modal__close" type="button" data-promo-close aria-label="Закрыть видео"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+</div>
 <div class="toast" role="status" aria-live="polite" data-toast><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-toast-text>Скопировано</span></div>
 
 <script>
@@ -2096,8 +2160,12 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
     'role-greenatom': 'images/role-greenatom.svg',
     'role-sdk': 'images/role-sdk.svg',
     'edu-college': 'images/edu-college.svg',
-    'desk-dev': 'images/desk-dev.svg'
+    'desk-dev': 'images/desk-dev.svg',
+    'promo-poster': 'images/promo-poster.webp'
   };
+
+  // MP4 (H.264) for most browsers, WebM (VP9) for builds without H.264
+  var PROMO_VIDEO = { mp4: 'images/promo.mp4', webm: 'images/promo.webm' };
 
   var PROJECTS = [
     { slug: 'mei-ai-assistant', title: 'AI-ассистент для МЭИ', year: 2026, img: 'mei-bot', pos: '50% 50%', kind: 'product', role: 'stolichny-dom-karery',
@@ -2291,6 +2359,44 @@ fieldset.field{border:0;padding:0;margin:0 0 18px}
     }
   });
   window.addEventListener('resize', function () { if (window.innerWidth > 1040) closeMenu(false); });
+
+  /* ------------------------------ Promo video ------------------------------ */
+  // The video file is attached on the first open, so it never loads with the page.
+  var promo = $('#promo-modal');
+  var promoVideo = $('video', promo);
+  var promoClose = $('.promo-modal__close', promo);
+  var promoReturn = null;
+  promoVideo.setAttribute('poster', IMAGES['promo-poster']);
+  function openPromo(e) {
+    promoReturn = (e && e.currentTarget) || document.activeElement;
+    if (!promoVideo.getAttribute('src')) promoVideo.setAttribute('src', promoVideo.canPlayType('video/mp4; codecs="avc1.640028, mp4a.40.2"') ? PROMO_VIDEO.mp4 : PROMO_VIDEO.webm);
+    promo.classList.add('is-open');
+    promo.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+    try { promoVideo.currentTime = 0; } catch (err) {}
+    var playing = promoVideo.play();
+    if (playing && playing.catch) playing.catch(function () {});
+    setTimeout(function () { promoClose.focus(); }, 60);
+  }
+  function closePromo() {
+    if (!promo.classList.contains('is-open')) return;
+    promoVideo.pause();
+    promo.classList.remove('is-open');
+    promo.setAttribute('aria-hidden', 'true');
+    document.documentElement.style.overflow = '';
+    if (promoReturn && promoReturn.focus) promoReturn.focus();
+  }
+  $$('[data-promo-open]').forEach(function (b) { b.addEventListener('click', openPromo); });
+  $$('[data-promo-close]', promo).forEach(function (b) { b.addEventListener('click', closePromo); });
+  document.addEventListener('keydown', function (e) {
+    if (!promo.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); closePromo(); return; }
+    if (e.key === 'Tab') {
+      if (e.shiftKey && document.activeElement === promoVideo) { e.preventDefault(); promoClose.focus(); }
+      else if (!e.shiftKey && document.activeElement === promoClose) { e.preventDefault(); promoVideo.focus(); }
+    }
+  });
+  window.addEventListener('hashchange', closePromo);
 
   /* ------------------------------ Toast + copy ------------------------------ */
   var toastEl = $('[data-toast]');
